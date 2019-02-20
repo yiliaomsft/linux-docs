@@ -1,5 +1,7 @@
+Today Web App for Containers requires ACR admin account for authentication with the registry. For organization desires to disable ACR admin account, the workaround is to create an ACR service principal with acrpull role and use it in App Service “Container settings” for authenticating with ACR.  Limitations apply.  
+
 # Create ACR Service Principal
-Create an ACR service principal using the following script. Make sure replace registry name with your own info. Make sure to use acrpull role with the lowest privilege.  Keep the Service principal ID and Service principal password for the next step. More details at: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal 
+Create an ACR service principal using the following script.  Make sure to replace registry name with your own info, make sure to use acrpull role with the lowest privilege.  Keep the Service principal ID and Service principal password for the next step. More details at: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal 
 ```bash
 # Modify for your environment.
 # ACR_NAME: The name of your Azure Container Registry

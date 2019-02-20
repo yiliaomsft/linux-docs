@@ -1,6 +1,6 @@
 # Create ACR Service Principal
 Create an ACR service principal using the following script. Make sure replace registry name with your own info. Make sure to use acrpull role with the lowest privilege.  Keep the Service principal ID and Service principal password for the next step. More details at: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal 
-\\\
+```bash
 # Modify for your environment.
 # ACR_NAME: The name of your Azure Container Registry
 # SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
@@ -22,12 +22,12 @@ SP_APP_ID=$(az ad sp show --id http://$SERVICE_PRINCIPAL_NAME --query appId --ou
 # applications to authenticate to the container registry.
 echo "Service principal ID: $SP_APP_ID"
 echo "Service principal password: $SP_PASSWD"
-\\\
+```
 # Configure Web App for Containers
 For App Service, configure your Web App for Containers to use the Service principal to authenticate with ACR.  Use the following CLI command:
-\\\
+```bash
 az webapp config container set --name <app_name> --resource-group myResourceGroup --docker-custom-image-name <azure-container-registry-name>.azurecr.io/mydockerimage --docker-registry-server-url https://<azure-container-registry-name>.azurecr.io --docker-registry-server-user <service principal ID> --docker-registry-server-password <service principal password>
-\\\
+```
 # Test your web app
 Check if the web app is running and updated to the new image from ACR.  Note: as the UX integration is not yet in place, you can only use CLI command to configure the container settings until we have the complete UX for using service principal and/or MSI to authenticate with ACR. 
 
